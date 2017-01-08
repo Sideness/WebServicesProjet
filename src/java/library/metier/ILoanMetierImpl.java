@@ -5,8 +5,6 @@
  */
 package library.metier;
 
-import java.util.ArrayList;
-import javax.ejb.Local;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
