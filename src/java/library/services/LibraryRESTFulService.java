@@ -29,7 +29,7 @@ import library.models.entities.TypeAuthor;
  * @author julien
  */
 @Stateless
-@Path("/rest")
+@Path("rest")
 public class LibraryRESTFulService {
     
     @EJB
