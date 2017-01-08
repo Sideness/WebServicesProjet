@@ -10,12 +10,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import library.models.IServiceModel;
 import library.models.entities.AccountType;
@@ -42,15 +44,15 @@ public class LibraryRESTFulService {
     @Path("/authors/add")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Author addAuthor(
-        @PathParam(value="about")String about,
-        @PathParam(value="birthdate")String birthdate,
-        @PathParam(value="email")String email,
-        @PathParam(value="firstname")String firstname,
-        @PathParam(value="gender")String gender,
-        @PathParam(value="lastname")String lastname,
-        @PathParam(value="nationality")String nationality,
-        @PathParam(value="profilepicture")String profilepicture,
-        @PathParam(value="type")int type){
+        @QueryParam("about") String about,
+        @QueryParam("birthdate") String birthdate,
+        @QueryParam("email") String email,
+        @QueryParam("firstname") String firstname,
+        @QueryParam("gender") String gender,
+        @QueryParam("lastname") String lastname,
+        @QueryParam("nationality") String nationality,
+        @QueryParam("profilepicture") String profilepicture,
+        @QueryParam("type")int type){
         
         Author author = new Author();
         author.setAbout(about);
@@ -89,18 +91,18 @@ public class LibraryRESTFulService {
     }
     
     @POST
-    @Path("/authors/update/{author}")
+    @Path("/authors/update/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Author updateAuthor(@PathParam(value="id")int id,
-        @PathParam(value="about")String about,
-        @PathParam(value="birthdate")String birthdate,
-        @PathParam(value="email")String email,
-        @PathParam(value="firstname")String firstname,
-        @PathParam(value="gender")String gender,
-        @PathParam(value="lastname")String lastname,
-        @PathParam(value="nationality")String nationality,
-        @PathParam(value="profilepicture")String profilepicture,
-        @PathParam(value="type")int type){
+    public Author updateAuthor(@QueryParam(value="id")int id,
+        @QueryParam(value="about")String about,
+        @QueryParam(value="birthdate")String birthdate,
+        @QueryParam(value="email")String email,
+        @QueryParam(value="firstname")String firstname,
+        @QueryParam(value="gender")String gender,
+        @QueryParam(value="lastname")String lastname,
+        @QueryParam(value="nationality")String nationality,
+        @QueryParam(value="profilepicture")String profilepicture,
+        @QueryParam(value="type")int type){
         Author author = metier.getAuthorById(id);
         
         author.setAbout(about);
@@ -123,7 +125,7 @@ public class LibraryRESTFulService {
     }
     
     @DELETE
-    @Path("/authors/delete/{author}")
+    @Path("/authors/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteAuthor(@PathParam(value="id")int id){
         Author author = metier.getAuthorById(id);
@@ -136,13 +138,13 @@ public class LibraryRESTFulService {
     @POST
     @Path("/books/add")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Book addBook(@PathParam(value="isbn")String isbn,
-            @PathParam(value="picture")String picture,
-            @PathParam(value="publicationdate")String publicationdate,
-            @PathParam(value="quantity")int quantity,
-            @PathParam(value="resume")String resume,
-            @PathParam(value="title")String title,
-            @PathParam(value="category_id")int category_id){
+    public Book addBook(@QueryParam(value="isbn")String isbn,
+            @QueryParam(value="picture")String picture,
+            @QueryParam(value="publicationdate")String publicationdate,
+            @QueryParam(value="quantity")int quantity,
+            @QueryParam(value="resume")String resume,
+            @QueryParam(value="title")String title,
+            @QueryParam(value="category_id")int category_id){
         Book book = new Book();
         
         book.setIsbn(isbn);
@@ -185,16 +187,16 @@ public class LibraryRESTFulService {
     }
     
     @POST
-    @Path("/books/update/{book}")
+    @Path("/books/update/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Book updateBook(@PathParam(value="id")int id,
-            @PathParam(value="isbn")String isbn,
-            @PathParam(value="picture")String picture,
-            @PathParam(value="publicationdate")String publicationdate,
-            @PathParam(value="quantity")int quantity,
-            @PathParam(value="resume")String resume,
-            @PathParam(value="title")String title,
-            @PathParam(value="category_id")int category_id){
+    public Book updateBook(@QueryParam(value="id")int id,
+            @QueryParam(value="isbn")String isbn,
+            @QueryParam(value="picture")String picture,
+            @QueryParam(value="publicationdate")String publicationdate,
+            @QueryParam(value="quantity")int quantity,
+            @QueryParam(value="resume")String resume,
+            @QueryParam(value="title")String title,
+            @QueryParam(value="category_id")int category_id){
         Book book = metier.getBookById(id);
        
         book.setIsbn(isbn);
@@ -215,7 +217,7 @@ public class LibraryRESTFulService {
     }
     
     @DELETE
-    @Path("/books/delete/{book}")
+    @Path("/books/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteBook(@PathParam(value="id")int id){
         Book book = metier.getBookById(id);
@@ -239,11 +241,11 @@ public class LibraryRESTFulService {
     }
     
     @POST
-    @Path("/categories/update/{cat}")
+    @Path("/categories/update/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Category updateCategory(@PathParam(value="id")int id,
-            @PathParam(value="description")String description,
-            @PathParam(value="name")String name){
+    public Category updateCategory(@QueryParam(value="id")int id,
+            @QueryParam(value="description")String description,
+            @QueryParam(value="name")String name){
         Category cat = metier.getCategoryById(id);
         
         cat.setDescription(description);
@@ -265,7 +267,7 @@ public class LibraryRESTFulService {
     @POST
     @Path("/categories/add")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public boolean addCategory(@PathParam(value="id")int id){
+    public boolean addCategory(@QueryParam(value="id")int id){
         Category cat = metier.getCategoryById(id);
         metier.deleteCategory(cat);
         return true;
@@ -288,20 +290,20 @@ public class LibraryRESTFulService {
     }
     
     @POST
-    @Path("/users/update/{user}")
+    @Path("/users/update/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public LibraryUser updateUser(@PathParam(value="id")int id,
-            @PathParam(value="accountstate")int accountstate,
-            @PathParam(value="birthdate")String birthdate,
-            @PathParam(value="email")String email,
-            @PathParam(value="firstname")String firstname,
-            @PathParam(value="gender")String gender,
-            @PathParam(value="isadmin")boolean isadmin,
-            @PathParam(value="lastconnection")String lastconnection,
-            @PathParam(value="lastname")String lastname,
-            @PathParam(value="login")String login,
-            @PathParam(value="password")String password,
-            @PathParam(value="profilepicture")String profilepicture){
+    public LibraryUser updateUser(@QueryParam(value="id")int id,
+            @QueryParam(value="accountstate")int accountstate,
+            @QueryParam(value="birthdate")String birthdate,
+            @QueryParam(value="email")String email,
+            @QueryParam(value="firstname")String firstname,
+            @QueryParam(value="gender")String gender,
+            @QueryParam(value="isadmin")boolean isadmin,
+            @QueryParam(value="lastconnection")String lastconnection,
+            @QueryParam(value="lastname")String lastname,
+            @QueryParam(value="login")String login,
+            @QueryParam(value="password")String password,
+            @QueryParam(value="profilepicture")String profilepicture){
         LibraryUser user = metier.getLibraryUserById(id);
         
         user.setAccountState(AccountType.values()[accountstate]);
@@ -331,7 +333,7 @@ public class LibraryRESTFulService {
     }
     
     @DELETE
-    @Path("/users/delete/{user}")
+    @Path("/users/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteUser(@PathParam(value="id")int id){
         LibraryUser user = metier.getLibraryUserById(id);
@@ -342,7 +344,7 @@ public class LibraryRESTFulService {
     @POST
     @Path("/connect")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public LibraryUser connect(@PathParam(value="login")String login, @PathParam(value="password")String password){
+    public LibraryUser connect(@QueryParam(value="login")String login, @QueryParam(value="password")String password){
         return metier.connect(login, password);
     }
     //End UserLibrary
@@ -351,17 +353,17 @@ public class LibraryRESTFulService {
     @POST
     @Path("/users/add")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public LibraryUser addUser(@PathParam(value="accountstate")int accountstate,
-            @PathParam(value="birthdate")String birthdate,
-            @PathParam(value="email")String email,
-            @PathParam(value="firstname")String firstname,
-            @PathParam(value="gender")String gender,
-            @PathParam(value="isadmin")boolean isadmin,
-            @PathParam(value="lastconnection")String lastconnection,
-            @PathParam(value="lastname")String lastname,
-            @PathParam(value="login")String login,
-            @PathParam(value="password")String password,
-            @PathParam(value="profilepicture")String profilepicture){
+    public LibraryUser addUser(@QueryParam(value="accountstate")int accountstate,
+            @QueryParam(value="birthdate")String birthdate,
+            @QueryParam(value="email")String email,
+            @QueryParam(value="firstname")String firstname,
+            @QueryParam(value="gender")String gender,
+            @QueryParam(value="isadmin")boolean isadmin,
+            @QueryParam(value="lastconnection")String lastconnection,
+            @QueryParam(value="lastname")String lastname,
+            @QueryParam(value="login")String login,
+            @QueryParam(value="password")String password,
+            @QueryParam(value="profilepicture")String profilepicture){
         LibraryUser user = new LibraryUser();
         
         user.setAccountState(AccountType.values()[accountstate]);
@@ -407,11 +409,11 @@ public class LibraryRESTFulService {
     @POST
     @Path("/loans/add")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Loan addLoan(@PathParam(value="duration")int duration,
-            @PathParam(value="isreturned")boolean isreturned,
-            @PathParam(value="startdate")String startdate,
-            @PathParam(value="book")int book,
-            @PathParam(value="libraryuser")int libraryuser){
+    public Loan addLoan(@QueryParam(value="duration")int duration,
+            @QueryParam(value="isreturned")boolean isreturned,
+            @QueryParam(value="startdate")String startdate,
+            @QueryParam(value="book")int book,
+            @QueryParam(value="libraryuser")int libraryuser){
         Loan loan = new Loan();
         
         loan.setDuration(duration);
@@ -430,14 +432,14 @@ public class LibraryRESTFulService {
     }
     
     @POST
-    @Path("/loans/update/{loan}")
+    @Path("/loans/update/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Loan updateLoan(@PathParam(value="id")int id,
-            @PathParam(value="duration")int duration,
-            @PathParam(value="isreturned")boolean isreturned,
-            @PathParam(value="startdate")String startdate,
-            @PathParam(value="book")int book,
-            @PathParam(value="libraryuser")int libraryuser){
+    public Loan updateLoan(@QueryParam(value="id")int id,
+            @QueryParam(value="duration")int duration,
+            @QueryParam(value="isreturned")boolean isreturned,
+            @QueryParam(value="startdate")String startdate,
+            @QueryParam(value="book")int book,
+            @QueryParam(value="libraryuser")int libraryuser){
         Loan loan = metier.getLoanById(id);
         
         loan.setDuration(duration);
@@ -455,7 +457,7 @@ public class LibraryRESTFulService {
         return loan;
     }
     @DELETE
-    @Path("/loans/delete/{loan}")
+    @Path("/loans/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteLoan(@PathParam(value="id")int id){
         Loan loan = metier.getLoanById(id);
