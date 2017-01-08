@@ -33,7 +33,7 @@ public class LibrarySOAPService {
     
     //Author
     @WebMethod
-    public void addAuthor(
+    public Author addAuthor(
         @WebParam(name="about")String about,
         @WebParam(name="birthdate")String birthdate,
         @WebParam(name="email")String email,
@@ -43,11 +43,15 @@ public class LibrarySOAPService {
         @WebParam(name="nationality")String nationality,
         @WebParam(name="profilepicture")String profilepicture,
         @WebParam(name="type")int type){
-        try{
+        
         Author author = new Author();
         author.setAbout(about);
+        try{
         SimpleDateFormat spl = new SimpleDateFormat("dd/MM/yyyy");
         author.setBirthDate(spl.parse(birthdate));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         author.setEmail(email);
         author.setFirstName(firstname);
         author.setGender(gender);
@@ -56,9 +60,8 @@ public class LibrarySOAPService {
         author.setProfilePicture(profilepicture);
         author.setType(TypeAuthor.values()[type]);
         metier.addAuthor(author);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        
+        return author;
     }
     
     @WebMethod
