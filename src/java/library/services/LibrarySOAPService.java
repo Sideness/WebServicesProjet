@@ -158,7 +158,8 @@ public class LibrarySOAPService {
     }
     
     @WebMethod
-    public List<Book> getBooksByCategory(@WebParam(name="cat")Category cat){
+    public List<Book> getBooksByCategory(@WebParam(name="id")int id){
+        Category cat = metier.getCategoryById(id);
         return metier.getBooksByCategory(cat);
     }
     

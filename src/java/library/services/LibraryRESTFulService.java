@@ -177,9 +177,10 @@ public class LibraryRESTFulService {
     }
     
     @GET
-    @Path("/categories/{cat}/books/")
+    @Path("/categories/{id}/books/")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Book> getBooksByCategory(@PathParam(value="cat")Category cat){
+    public List<Book> getBooksByCategory(@PathParam(value="id")int id){
+        Category cat = metier.getCategoryById(id);
         return metier.getBooksByCategory(cat);
     }
     
@@ -253,10 +254,12 @@ public class LibraryRESTFulService {
     }
     
     @DELETE
-    @Path("/categories/delete/{cat}")
+    @Path("/categories/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public void deleteCategory(@PathParam(value="cat")Category cat){
+    public boolean deleteCategory(@PathParam(value="id")int id){
+        Category cat = metier.getCategoryById(id);
         metier.deleteCategory(cat);
+        return true;
     }
     
     @POST
