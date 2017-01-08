@@ -17,5 +17,5 @@ public interface ILoanMetier {
     public List<Loan> getAllLoans();
     public void addLoan(Loan loan);
     public void update(Loan loan);
-    public void delete(int id);
+    public void delete(Loan loan);
 }

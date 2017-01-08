@@ -6,17 +6,15 @@
 package library.models;
 
 import java.util.List;
-import library.models.entities.Book;
 import library.models.entities.Category;
 
 /**
  *
  * @author julien
  */
-public interface IBookMetier {
-    public List<Book> getAllBooks();
-    public Book getBookById(int id);
-    public List<Book> getBooksByCategory(Category cat);
-    public void addBook(Book book);
-    public void deleteBook(Book book);
+public interface ICategoryMetier {
+    public List<Category> getAllCategory();
+    public Category getCategoryById(int id);
+    public void update(Category cat);
+    public void delete(Category cat);
 }
