@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -267,10 +266,15 @@ public class LibraryRESTFulService {
     @POST
     @Path("/categories/add")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public boolean addCategory(@QueryParam(value="id")int id){
-        Category cat = metier.getCategoryById(id);
-        metier.deleteCategory(cat);
-        return true;
+    public Category addCategory(@QueryParam(value="description")String description,
+            @QueryParam(value="name")String name){
+        Category cat = new Category();
+        
+        cat.setDescription(description);
+        cat.setName(name);
+        
+        metier.addCategory(cat);
+        return cat;
     }
     //End Category
     
