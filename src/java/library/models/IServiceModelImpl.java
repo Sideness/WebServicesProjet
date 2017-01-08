@@ -23,7 +23,7 @@ import library.models.entities.Loan;
 @Stateless(name="LIBRARYUSER")
 public class IServiceModelImpl implements IServiceModel {
     
-    @PersistenceContext(name="LibraryDS")
+    @PersistenceContext(name="_Projet_WS_REVOIL_REMISE_STEFANIPU")
     
     EntityManager em;
 
