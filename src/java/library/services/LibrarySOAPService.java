@@ -377,7 +377,7 @@ public class LibrarySOAPService {
         loan.setBorrowedBook(metier.getBookById(book));
         loan.setUser(metier.getLibraryUserById(libraryuser));
         
-        metier.addLoan(loan);
+        loan = metier.addLoan(loan);
         return loan;
     }
     

@@ -53,8 +53,9 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void addAuthor(Author author) {
+    public Author addAuthor(Author author) {
         em.persist(author);
+        return author;
     }
     //End Author
     
@@ -72,8 +73,9 @@ public class IServiceModelImpl implements IServiceModel {
     }
     
     @Override
-    public void addBook(Book book){
+    public Book addBook(Book book){
         em.persist(book);
+        return book;
     }
     
     @Override
@@ -121,8 +123,9 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void addCategory(Category cat) {
+    public Category addCategory(Category cat) {
         em.persist(cat);
+        return cat;
     }
     //End Category
     
@@ -165,8 +168,9 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void addUser(LibraryUser user) {
+    public LibraryUser addUser(LibraryUser user) {
         em.persist(user);
+        return user;
     }
     //End LibraryUser
     
@@ -196,8 +200,16 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void addLoan(Loan loan) {
-        em.persist(loan);
+    public Loan addLoan(Loan loan) {
+        Query req=em.createQuery("select l from Loan l where l.borrowedBook = :book and l.isReturned = false");
+        req.setParameter("book", loan.getBorrowedBook());
+        List<Loan> listLoans = req.getResultList();
+        
+        if(loan.getBorrowedBook().getQuantity() > listLoans.size()){
+            em.persist(loan);
+            return loan;
+        }
+        return null;
     }
     //End Loan
 

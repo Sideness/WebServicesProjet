@@ -21,7 +21,7 @@ import library.models.entities.Loan;
 @Local
 public interface IServiceModel {
     //Author
-    public void addAuthor(Author author);
+    public Author addAuthor(Author author);
     public List<Author> getAllAuthors();
     public Author getAuthorById(int id);
     public void updateAuthor(Author author);
@@ -29,7 +29,7 @@ public interface IServiceModel {
    //End Author
     
     //Book
-    public void addBook(Book book);
+    public Book addBook(Book book);
     public List<Book> getAllBooks();
     public Book getBookById(int id);
     public List<Book> getBooksByCategory(Category cat);
@@ -38,7 +38,7 @@ public interface IServiceModel {
     //End Book
     
     //Category
-    public void addCategory(Category cat);
+    public Category addCategory(Category cat);
     public List<Category> getAllCategory();
     public Category getCategoryById(int id);
     public void updateCategory(Category cat);
@@ -46,7 +46,7 @@ public interface IServiceModel {
     //End Category
     
     //UserLibrary
-    public void addUser(LibraryUser user);
+    public LibraryUser addUser(LibraryUser user);
     public List<LibraryUser> getAllLibraryUsers();
     public LibraryUser getLibraryUserById(int id);
     public void updateUser(LibraryUser user);
@@ -55,7 +55,7 @@ public interface IServiceModel {
     //End UserLibrary
     
     //Loan
-    public void addLoan(Loan loan);
+    public Loan addLoan(Loan loan);
     public Loan getLoanById(int id);
     public List<Loan> getListLoanByUser(int userId);
     public List<Loan> getAllLoans();
