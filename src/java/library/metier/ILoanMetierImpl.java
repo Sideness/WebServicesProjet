@@ -27,7 +27,8 @@ public class ILoanMetierImpl implements ILoanMetier {
     @Override
     public List<Loan> getListLoanByUser(int id) {
         //TODO Changer pour get ceux qui correspondent
-        Query req=em.createQuery("select l from Loan l");
+        Query req=em.createQuery("select l from Loan l, LibraryUser u where l.user = u.id and u.id = :param");
+        req.setParameter("param", id);
         return req.getResultList();
     }
 
@@ -37,6 +38,10 @@ public class ILoanMetierImpl implements ILoanMetier {
         return req.getResultList();
     }
     
+    @Override
+    public void addLoan(Loan loan){
+        em.persist(loan);
+    }
     
     @Override
     public void update(Loan loan) {
