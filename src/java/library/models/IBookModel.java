@@ -13,7 +13,7 @@ import library.models.entities.Category;
  *
  * @author julien
  */
-public interface IBookMetier {
+public interface IBookModel {
     public List<Book> getAllBooks();
     public Book getBookById(int id);
     public List<Book> getBooksByCategory(Category cat);

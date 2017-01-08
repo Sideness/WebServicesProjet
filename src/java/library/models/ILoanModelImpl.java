@@ -17,7 +17,7 @@ import library.models.entities.Loan;
  * @author SidenessPC
  */
 @Stateless(name="LOAN")
-public class ILoanMetierImpl implements ILoanMetier {
+public class ILoanModelImpl implements ILoanModel {
     @PersistenceContext(name="LibraryDS")
     
     EntityManager em;

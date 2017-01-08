@@ -12,7 +12,7 @@ import library.models.entities.Loan;
  *
  * @author SidenessPC
  */
-public interface ILoanMetier {
+public interface ILoanModel {
     public List<Loan> getListLoanByUser(int userId);
     public List<Loan> getAllLoans();
     public void addLoan(Loan loan);

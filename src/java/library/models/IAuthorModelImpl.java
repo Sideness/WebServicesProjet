@@ -10,40 +10,41 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import library.models.entities.Category;
+import library.models.entities.Author;
+import library.models.entities.LibraryUser;
 
 /**
  *
  * @author julien
  */
-@Stateless(name="CATEGORY")
-public class ICategoryMetierImpl implements ICategoryMetier {
+@Stateless(name="LIBRARYUSER")
+public class IAuthorModelImpl implements IAuthorModel {
     
     @PersistenceContext(name="LibraryDS")
     
     EntityManager em;
 
     @Override
-    public List<Category> getAllCategory() {
-        Query req=em.createQuery("select c from Category c");
+    public List<Author> getAllAuthors() {
+        Query req=em.createQuery("select a from Author a");
         return req.getResultList();
     }
 
     @Override
-    public Category getCategoryById(int id) {
-        Category c = em.find(Category.class, id);
-        return c;
+    public Author getAuthorById(int id) {
+        Author a = em.find(Author.class, id);
+        return a;
     }
 
     @Override
-    public void update(Category cat) {
-        em.persist(cat);
+    public void update(Author author) {
+        em.persist(author);
     }
 
     @Override
-    public void delete(Category cat) {
-        Category c = em.find(Category.class, cat.getId());
-        em.remove(c);
+    public void delete(Author author) {
+        Author a = em.find(Author.class, author.getId());
+        em.remove(a);
     }
     
 }

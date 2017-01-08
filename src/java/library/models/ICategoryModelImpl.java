@@ -10,40 +10,40 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import library.models.entities.LibraryUser;
+import library.models.entities.Category;
 
 /**
  *
  * @author julien
  */
-@Stateless(name="LIBRARYUSER")
-public class ILibraryUserMetierImpl implements ILibraryUserMetier {
+@Stateless(name="CATEGORY")
+public class ICategoryModelImpl implements ICategoryModel {
     
     @PersistenceContext(name="LibraryDS")
     
     EntityManager em;
 
     @Override
-    public List<LibraryUser> getAllLibraryUsers() {
-        Query req=em.createQuery("select lu from LibraryUser lu");
+    public List<Category> getAllCategory() {
+        Query req=em.createQuery("select c from Category c");
         return req.getResultList();
     }
 
     @Override
-    public LibraryUser getLibraryUserById(int id) {
-        LibraryUser lu = em.find(LibraryUser.class, id);
-        return lu;
+    public Category getCategoryById(int id) {
+        Category c = em.find(Category.class, id);
+        return c;
     }
 
     @Override
-    public void update(LibraryUser user) {
-        em.persist(user);
+    public void update(Category cat) {
+        em.persist(cat);
     }
 
     @Override
-    public void delete(LibraryUser user) {
-        LibraryUser lu = em.find(LibraryUser.class, user.getId());
-        em.remove(lu);
+    public void delete(Category cat) {
+        Category c = em.find(Category.class, cat.getId());
+        em.remove(c);
     }
     
 }

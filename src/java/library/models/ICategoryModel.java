@@ -12,7 +12,7 @@ import library.models.entities.Category;
  *
  * @author julien
  */
-public interface ICategoryMetier {
+public interface ICategoryModel {
     public List<Category> getAllCategory();
     public Category getCategoryById(int id);
     public void update(Category cat);

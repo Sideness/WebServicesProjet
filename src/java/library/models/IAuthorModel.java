@@ -6,15 +6,15 @@
 package library.models;
 
 import java.util.List;
-import library.models.entities.LibraryUser;
+import library.models.entities.Author;
 
 /**
  *
  * @author julien
  */
-public interface ILibraryUserMetier {
-    public List<LibraryUser> getAllLibraryUsers();
-    public LibraryUser getLibraryUserById(int id);
-    public void update(LibraryUser user);
-    public void delete(LibraryUser user);
+public interface IAuthorModel {
+    public List<Author> getAllAuthors();
+    public Author getAuthorById(int id);
+    public void update(Author author);
+    public void delete(Author author);
 }
