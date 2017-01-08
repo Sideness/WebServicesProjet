@@ -5,6 +5,9 @@
  */
 package library.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebParam;
@@ -16,6 +19,7 @@ import library.models.entities.Book;
 import library.models.entities.Category;
 import library.models.entities.LibraryUser;
 import library.models.entities.Loan;
+import library.models.entities.TypeAuthor;
 
 /**
  *
@@ -30,8 +34,31 @@ public class LibrarySOAPService {
     //Author
     @WebMethod
     public void addAuthor(
-        @WebParam(name="author")Author author){
+        @WebParam(name="about")String about,
+        @WebParam(name="birthdate")String birthdate,
+        @WebParam(name="email")String email,
+        @WebParam(name="firstname")String firstname,
+        @WebParam(name="gender")String gender,
+        @WebParam(name="lastname")String lastname,
+        @WebParam(name="nationality")String nationality,
+        @WebParam(name="profilepicture")String profilepicture,
+        @WebParam(name="type")int type){
+        try{
+        Author author = new Author();
+        author.setAbout(about);
+        SimpleDateFormat spl = new SimpleDateFormat("dd/MM/yyyy");
+        author.setBirthDate(spl.parse(birthdate));
+        author.setEmail(email);
+        author.setFirstName(firstname);
+        author.setGender(gender);
+        author.setLastName(lastname);
+        author.setNationality(nationality);
+        author.setProfilePicture(profilepicture);
+        author.setType(TypeAuthor.values()[type]);
         metier.addAuthor(author);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     @WebMethod
