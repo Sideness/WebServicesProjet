@@ -7,6 +7,7 @@ package org.netbeans.rest.application.config;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import library.tools.CrossOriginResourceSharingFilter;
 
 /**
  *
@@ -30,6 +31,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(library.services.LibraryRESTFulService.class);
+        resources.add(library.tools.CrossOriginResourceSharingFilter.class);
     }
     
 }
