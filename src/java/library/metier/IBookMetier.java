@@ -12,7 +12,7 @@ import library.metier.entities.Book;
  *
  * @author julien
  */
-public class IBookMetier {
+public interface IBookMetier {
     public List<Book> getAllBooks();
     public Book getBookById(int id);
 }

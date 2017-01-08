@@ -17,7 +17,7 @@ import library.metier.entities.Book;
  * @author julien
  */
 @Stateless(name="BOOK")
-public class IBookMetierImpl extends IBookMetier {
+public class IBookMetierImpl implements IBookMetier {
     @PersistenceContext(name="LibraryDS")
     
     EntityManager em;
