@@ -41,18 +41,18 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void update(Author author) {
+    public void updateAuthor(Author author) {
         em.persist(author);
     }
 
     @Override
-    public void delete(Author author) {
+    public void deleteAuthor(Author author) {
         Author a = em.find(Author.class, author.getId());
         em.remove(a);
     }
 
     @Override
-    public void add(Author author) {
+    public void addAuthor(Author author) {
         em.persist(author);
     }
     //End Author
@@ -76,6 +76,11 @@ public class IServiceModelImpl implements IServiceModel {
     }
     
     @Override
+    public void updateBook(Book book) {
+        em.persist(book);
+    }
+    
+    @Override
     public void deleteBook(Book book){
         Book b = em.find(Book.class, book.getId());
         em.remove(b);
@@ -86,11 +91,6 @@ public class IServiceModelImpl implements IServiceModel {
         Query req=em.createQuery("select b from Book b, Category c where b.id = c.id and c.id = :param");
         req.setParameter("param", cat.getId());
         return req.getResultList();
-    }
-
-    @Override
-    public void add(Book book) {
-        em.persist(book);
     }
     //End Book
     
@@ -108,18 +108,18 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void update(Category cat) {
+    public void updateCategory(Category cat) {
         em.persist(cat);
     }
 
     @Override
-    public void delete(Category cat) {
+    public void deleteCategory(Category cat) {
         Category c = em.find(Category.class, cat.getId());
         em.remove(c);
     }
 
     @Override
-    public void add(Category cat) {
+    public void addCategory(Category cat) {
         em.persist(cat);
     }
     //End Category
@@ -138,12 +138,12 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void update(LibraryUser user) {
+    public void updateUser(LibraryUser user) {
         em.persist(user);
     }
 
     @Override
-    public void delete(LibraryUser user) {
+    public void deleteUser(LibraryUser user) {
         LibraryUser lu = em.find(LibraryUser.class, user.getId());
         em.remove(lu);
     }
@@ -162,7 +162,7 @@ public class IServiceModelImpl implements IServiceModel {
     }
 
     @Override
-    public void add(LibraryUser user) {
+    public void addUser(LibraryUser user) {
         em.persist(user);
     }
     //End LibraryUser
@@ -182,23 +182,18 @@ public class IServiceModelImpl implements IServiceModel {
     }
     
     @Override
-    public void addLoan(Loan loan){
-        em.persist(loan);
-    }
-    
-    @Override
-    public void update(Loan loan) {
+    public void updateLoan(Loan loan) {
         em.persist(loan);
     }
 
     @Override
-    public void delete(Loan loan) {
+    public void deleteLoan(Loan loan) {
         Loan m = em.find(Loan.class, loan.getId());
         em.remove(m);
     }
 
     @Override
-    public void add(Loan loan) {
+    public void addLoan(Loan loan) {
         em.persist(loan);
     }
     //End Loan

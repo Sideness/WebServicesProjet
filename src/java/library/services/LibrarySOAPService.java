@@ -31,7 +31,7 @@ public class LibrarySOAPService {
     @WebMethod
     public void add(
         @WebParam(name="author")Author author){
-        metier.add(author);
+        metier.addAuthor(author);
     }
     
     @WebMethod
@@ -48,19 +48,19 @@ public class LibrarySOAPService {
     
     @WebMethod
     public void update(@WebParam(name="author")Author author){
-        metier.update(author);
+        metier.updateAuthor(author);
     }
     
     @WebMethod
     public void delete(@WebParam(name="author")Author author){
-        metier.delete(author);
+        metier.deleteAuthor(author);
     }
    //End Author
     
     //Book
     @WebMethod
     public void add(@WebParam(name="book")Book book){
-        metier.add(book);
+        metier.addBook(book);
     }
     
     @WebMethod
@@ -80,7 +80,7 @@ public class LibrarySOAPService {
     
     @WebMethod
     public void addBook(@WebParam(name="book")Book book){
-        metier.add(book);
+        metier.addBook(book);
     }
     
     @WebMethod
@@ -88,12 +88,6 @@ public class LibrarySOAPService {
         metier.deleteBook(book);
     }
     //End Book
-    
-    //Category
-    @WebMethod
-    public void add(@WebParam(name="cat")Category cat){
-        metier.add(cat);
-    }
     
     @WebMethod
     public List<Category> getAllCategory(){
@@ -107,19 +101,19 @@ public class LibrarySOAPService {
     
     @WebMethod
     public void update(@WebParam(name="cat")Category cat){
-        metier.update(cat);
+        metier.updateCategory(cat);
     }
     
     @WebMethod
     public void delete(@WebParam(name="cat")Category cat){
-        metier.delete(cat);
+        metier.deleteCategory(cat);
     }
     //End Category
     
     //UserLibrary
     @WebMethod
     public void add(@WebParam(name="user")LibraryUser user){
-        metier.add(user);
+        metier.addUser(user);
     }
     
     @WebMethod
@@ -134,12 +128,12 @@ public class LibrarySOAPService {
     
     @WebMethod
     public void update(@WebParam(name="user")LibraryUser user){
-        metier.update(user);
+        metier.updateUser(user);
     }
     
     @WebMethod
     public void delete(@WebParam(name="user")LibraryUser user){
-        metier.delete(user);
+        metier.deleteUser(user);
     }
     
     @WebMethod
@@ -151,7 +145,7 @@ public class LibrarySOAPService {
     //Loan
     @WebMethod
     public void add(@WebParam(name="loan")Loan loan){
-        metier.add(loan);
+        metier.addLoan(loan);
     }
     
     @WebMethod
@@ -171,11 +165,11 @@ public class LibrarySOAPService {
     
     @WebMethod
     public void update(@WebParam(name="loan")Loan loan){
-        metier.update(loan);
+        metier.updateLoan(loan);
     }
     @WebMethod
     public void delete(@WebParam(name="loan")Loan loan){
-        metier.delete(loan);
+        metier.deleteLoan(loan);
     }
     //End Loan
 }
