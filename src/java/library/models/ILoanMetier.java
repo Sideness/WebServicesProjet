@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package library.metier;
+package library.models;
 
 import java.util.List;
-import library.metier.entities.Loan;
+import library.models.entities.Loan;
 
 /**
  *

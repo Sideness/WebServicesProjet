@@ -8,7 +8,7 @@ package library.controllers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import library.metier.entities.Author;
+import library.models.entities.Author;
 
 /**
  *
