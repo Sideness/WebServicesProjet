@@ -117,11 +117,6 @@ public class LibrarySOAPService {
     
     //UserLibrary
     @WebMethod
-    public void addUser(@WebParam(name="user")LibraryUser user){
-        metier.addUser(user);
-    }
-    
-    @WebMethod
     public List<LibraryUser> getAllLibraryUsers(){
         return metier.getAllLibraryUsers();
     }
