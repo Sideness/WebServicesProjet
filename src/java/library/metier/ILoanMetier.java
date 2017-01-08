@@ -14,6 +14,7 @@ import library.metier.entities.Loan;
  */
 public interface ILoanMetier {
     public List<Loan> getListLoanByUser(int userId);
+    public List<Loan> getAllLoans();
     public void update(Loan loan);
-    public void delete(Loan loan);
+    public void delete(int id);
 }
