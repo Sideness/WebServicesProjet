@@ -58,5 +58,10 @@ public class ILibraryUserModelImpl implements ILibraryUserModel {
         }
         return null;
     }
+
+    @Override
+    public void add(LibraryUser user) {
+        em.persist(user);
+    }
     
 }

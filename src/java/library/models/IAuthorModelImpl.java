@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import library.models.entities.Author;
-import library.models.entities.LibraryUser;
 
 /**
  *
@@ -45,6 +44,11 @@ public class IAuthorModelImpl implements IAuthorModel {
     public void delete(Author author) {
         Author a = em.find(Author.class, author.getId());
         em.remove(a);
+    }
+
+    @Override
+    public void add(Author author) {
+        em.persist(author);
     }
     
 }

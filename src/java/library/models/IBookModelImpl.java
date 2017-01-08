@@ -52,4 +52,9 @@ public class IBookModelImpl implements IBookModel {
         req.setParameter("param", cat.getId());
         return req.getResultList();
     }
+
+    @Override
+    public void add(Book book) {
+        em.persist(book);
+    }
 }

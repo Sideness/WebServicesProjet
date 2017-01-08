@@ -14,6 +14,7 @@ import library.models.entities.Category;
  * @author julien
  */
 public interface IBookModel {
+    public void add(Book book);
     public List<Book> getAllBooks();
     public Book getBookById(int id);
     public List<Book> getBooksByCategory(Category cat);

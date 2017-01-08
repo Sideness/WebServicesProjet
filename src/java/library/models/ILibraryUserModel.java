@@ -13,6 +13,7 @@ import library.models.entities.LibraryUser;
  * @author julien
  */
 public interface ILibraryUserModel {
+    public void add(LibraryUser user);
     public List<LibraryUser> getAllLibraryUsers();
     public LibraryUser getLibraryUserById(int id);
     public void update(LibraryUser user);

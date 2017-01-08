@@ -13,6 +13,7 @@ import library.models.entities.Author;
  * @author julien
  */
 public interface IAuthorModel {
+    public void add(Author author);
     public List<Author> getAllAuthors();
     public Author getAuthorById(int id);
     public void update(Author author);

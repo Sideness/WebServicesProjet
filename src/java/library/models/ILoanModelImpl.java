@@ -50,5 +50,10 @@ public class ILoanModelImpl implements ILoanModel {
         Loan m = em.find(Loan.class, loan.getId());
         em.remove(m);
     }
+
+    @Override
+    public void add(Loan loan) {
+        em.persist(loan);
+    }
     
 }

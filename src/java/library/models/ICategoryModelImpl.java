@@ -45,5 +45,10 @@ public class ICategoryModelImpl implements ICategoryModel {
         Category c = em.find(Category.class, cat.getId());
         em.remove(c);
     }
+
+    @Override
+    public void add(Category cat) {
+        em.persist(cat);
+    }
     
 }

@@ -13,6 +13,7 @@ import library.models.entities.Category;
  * @author julien
  */
 public interface ICategoryModel {
+    public void add(Category cat);
     public List<Category> getAllCategory();
     public Category getCategoryById(int id);
     public void update(Category cat);
