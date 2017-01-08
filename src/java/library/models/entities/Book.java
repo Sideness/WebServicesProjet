@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
 
@@ -34,6 +36,7 @@ public class Book implements Serializable {
     private String picture;
     @Temporal(DATE)
     private Date publicationDate;
+    @ManyToMany(mappedBy = "writtenBooks", cascade = CascadeType.PERSIST)
     private List<Author> authors;
     private List<Loan> loans;
     private Category category;
