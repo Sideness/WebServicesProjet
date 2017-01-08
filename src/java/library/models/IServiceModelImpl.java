@@ -36,7 +36,8 @@ public class IServiceModelImpl implements IServiceModel {
 
     @Override
     public Author getAuthorById(int id) {
-        Author a = em.find(Author.class, id);
+        Long longId = new Long(id);
+        Author a = em.find(Author.class, longId);
         return a;
     }
 
@@ -103,7 +104,8 @@ public class IServiceModelImpl implements IServiceModel {
 
     @Override
     public Category getCategoryById(int id) {
-        Category c = em.find(Category.class, id);
+        Long longId = new Long(id);
+        Category c = em.find(Category.class, longId);
         return c;
     }
 
@@ -133,7 +135,8 @@ public class IServiceModelImpl implements IServiceModel {
 
     @Override
     public LibraryUser getLibraryUserById(int id) {
-        LibraryUser lu = em.find(LibraryUser.class, id);
+        Long longId = new Long(id);
+        LibraryUser lu = em.find(LibraryUser.class, longId);
         return lu;
     }
 
@@ -197,4 +200,11 @@ public class IServiceModelImpl implements IServiceModel {
         em.persist(loan);
     }
     //End Loan
+
+    @Override
+    public Loan getLoanById(int id) {
+        Long longId = new Long(id);
+        Loan loan = em.find(Loan.class, longId);
+        return loan;
+    }
 }

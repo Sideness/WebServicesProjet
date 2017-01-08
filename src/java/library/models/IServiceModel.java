@@ -56,6 +56,7 @@ public interface IServiceModel {
     
     //Loan
     public void addLoan(Loan loan);
+    public Loan getLoanById(int id);
     public List<Loan> getListLoanByUser(int userId);
     public List<Loan> getAllLoans();
     public void updateLoan(Loan loan);
