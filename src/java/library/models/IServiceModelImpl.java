@@ -160,7 +160,11 @@ public class IServiceModelImpl implements IServiceModel {
         req.setParameter("login", login);
         req.setParameter("password", password);
         LibraryUser lu = null;
-        lu = (LibraryUser)req.getSingleResult();
+        try{
+            lu = (LibraryUser)req.getSingleResult();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         if(lu != null){
             return lu;
         }
