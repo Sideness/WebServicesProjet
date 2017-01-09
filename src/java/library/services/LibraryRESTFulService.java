@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotAcceptableException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -348,7 +349,13 @@ public class LibraryRESTFulService {
     @POST
     @Path("/connect")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public LibraryUser connect(@QueryParam(value="login")String login, @QueryParam(value="password")String password){
+    public LibraryUser connect(@QueryParam(value="login")String login, @QueryParam(value="password")String password) throws NotAcceptableException{
+        LibraryUser ret = null;
+        ret = metier.connect(login, password);
+        if(ret == null){
+            throw new NotAcceptableException();
+        }
+        
         return metier.connect(login, password);
     }
     //End UserLibrary
