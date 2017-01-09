@@ -143,8 +143,12 @@ public class LibraryRESTFulService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteAuthor(@PathParam(value="id")int id){
         Author author = metier.getAuthorById(id);
-        metier.deleteAuthor(author);
-        return true;
+        if(author != null){
+            metier.deleteAuthor(author);
+            return true;
+        }else{
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
    //End Author
     
@@ -174,7 +178,10 @@ public class LibraryRESTFulService {
         book.setTitle(title);
         book.setCategory(metier.getCategoryById(category_id));
         
-        metier.addBook(book);
+        book = metier.addBook(book);
+        if(book == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
         return book;
     }
     
@@ -182,22 +189,41 @@ public class LibraryRESTFulService {
     @Path("/books/")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Book> getAllBooks(){
-        return metier.getAllBooks();
+        List<Book> books = null;
+        books = metier.getAllBooks();
+        if(books == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return books;
     }
     
     @GET
     @Path("/books/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Book getBookById(@PathParam(value="id")int id){
-        return metier.getBookById(id);
+        Book book = null;
+        book = metier.getBookById(id);
+        if(book == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return book;
     }
     
     @GET
     @Path("/categories/{id}/books/")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Book> getBooksByCategory(@PathParam(value="id")int id){
-        Category cat = metier.getCategoryById(id);
-        return metier.getBooksByCategory(cat);
+        Category cat = null;
+        cat = metier.getCategoryById(id);
+        if(cat == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        List<Book> books = null;
+        books = metier.getBooksByCategory(cat);
+        if(books == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return books;
     }
     
     @POST
@@ -235,8 +261,12 @@ public class LibraryRESTFulService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteBook(@PathParam(value="id")int id){
         Book book = metier.getBookById(id);
-        metier.deleteBook(book);
-        return true;
+        if(book != null){
+            metier.deleteBook(book);
+            return true;
+        }else{
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
     //End Book
     
@@ -244,14 +274,24 @@ public class LibraryRESTFulService {
     @Path("/categories")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Category> getAllCategory(){
-        return metier.getAllCategory();
+        List<Category> cats = null;
+        cats = metier.getAllCategory();
+        if(cats == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return cats;
     }
 
     @GET
     @Path("/categories/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Category getCategoryById(@PathParam(value="id")int id){
-        return metier.getCategoryById(id);
+        Category cat = null;
+        cat = metier.getCategoryById(id);
+        if(cat == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return cat;
     }
     
     @POST
@@ -273,9 +313,14 @@ public class LibraryRESTFulService {
     @Path("/categories/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteCategory(@PathParam(value="id")int id){
-        Category cat = metier.getCategoryById(id);
-        metier.deleteCategory(cat);
-        return true;
+        Category cat = null;
+        cat = metier.getCategoryById(id);
+        if(cat != null){
+            metier.deleteCategory(cat);
+            return true;
+        }else{
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
     
     @POST
@@ -288,7 +333,10 @@ public class LibraryRESTFulService {
         cat.setDescription(description);
         cat.setName(name);
         
-        metier.addCategory(cat);
+        cat = metier.addCategory(cat);
+        if(cat == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
         return cat;
     }
     //End Category
@@ -298,14 +346,24 @@ public class LibraryRESTFulService {
     @Path("/users")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<LibraryUser> getAllLibraryUsers(){
-        return metier.getAllLibraryUsers();
+        List<LibraryUser> users = null;
+        users = metier.getAllLibraryUsers();
+        if(users == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return users;
     }
     
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public LibraryUser getLibraryUserById(@PathParam(value="id")int id){
-        return metier.getLibraryUserById(id);
+        LibraryUser user = null;
+        user = metier.getLibraryUserById(id);
+        if(user == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return user;
     }
     
     @POST
@@ -355,9 +413,14 @@ public class LibraryRESTFulService {
     @Path("/users/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteUser(@PathParam(value="id")int id){
-        LibraryUser user = metier.getLibraryUserById(id);
-        metier.deleteUser(user);
-        return true;
+        LibraryUser user = null;
+        user = metier.getLibraryUserById(id);
+        if(user != null){
+            metier.deleteUser(user);
+            return true;
+        }else{
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
     
     @POST
@@ -369,7 +432,6 @@ public class LibraryRESTFulService {
         if(ret == null){
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        
         return ret;
     }
     //End UserLibrary
@@ -420,7 +482,10 @@ public class LibraryRESTFulService {
         user.setPassword(password);
         user.setProfilePicture(profilepicture);
         
-        metier.addUser(user);
+        user = metier.addUser(user);
+        if(user == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
         return user;
     }
     
@@ -428,14 +493,24 @@ public class LibraryRESTFulService {
     @Path("/{userId}/loans")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Loan> getListLoanByUser(@PathParam(value="userId")int userId){
-        return metier.getListLoanByUser(userId);
+        List<Loan> loans = null;
+        loans = metier.getListLoanByUser(userId);
+        if(loans == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return loans;
     }
     
     @GET
     @Path("/loans")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Loan> getAllLoans(){
-        return metier.getAllLoans();
+        List<Loan> loans = null;
+        loans = metier.getAllLoans();
+        if(loans == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return loans;
     }
     
     @POST
@@ -460,6 +535,9 @@ public class LibraryRESTFulService {
         loan.setUser(metier.getLibraryUserById(libraryuser));
         
         loan = metier.addLoan(loan);
+        if(loan == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
         return loan;
     }
     
@@ -492,9 +570,14 @@ public class LibraryRESTFulService {
     @Path("/loans/delete/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public boolean deleteLoan(@PathParam(value="id")int id){
-        Loan loan = metier.getLoanById(id);
-        metier.deleteLoan(loan);
-        return true;
+        Loan loan = null;
+        loan = metier.getLoanById(id);
+        if(loan != null){
+            metier.deleteLoan(loan);
+            return true;
+        }else{
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
     //End Loan
 }
