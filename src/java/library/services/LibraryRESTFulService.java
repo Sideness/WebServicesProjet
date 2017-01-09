@@ -356,7 +356,7 @@ public class LibraryRESTFulService {
             throw new NotAcceptableException();
         }
         
-        return metier.connect(login, password);
+        return ret;
     }
     //End UserLibrary
     
