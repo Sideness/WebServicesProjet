@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *

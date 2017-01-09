@@ -7,7 +7,6 @@ package org.netbeans.rest.application.config;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
-import library.tools.CrossOriginResourceSharingFilter;
 
 /**
  *

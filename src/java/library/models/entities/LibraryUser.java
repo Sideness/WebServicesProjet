@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,6 +23,7 @@ import static javax.persistence.TemporalType.DATE;
 public class LibraryUser extends Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Column(unique=true)
     private String login;
     private String password;
     private AccountType accountState;
