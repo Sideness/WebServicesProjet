@@ -68,7 +68,8 @@ public class IServiceModelImpl implements IServiceModel {
     
     @Override
     public Book getBookById(int id){
-        Book b = em.find(Book.class, id);
+        Long longId = new Long(id);
+        Book b = em.find(Book.class, longId);
         return b;
     }
     

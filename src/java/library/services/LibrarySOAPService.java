@@ -7,7 +7,6 @@ package library.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebParam;
@@ -409,6 +408,13 @@ public class LibrarySOAPService {
         Loan loan = metier.getLoanById(id);
         metier.deleteLoan(loan);
         return true;
+    }
+    
+    @WebMethod
+    public Loan getLoanById(@WebParam(name="id")int id){
+        Loan loan = null;
+        loan = metier.getLoanById(id);
+        return loan;
     }
     //End Loan
 }

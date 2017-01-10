@@ -579,5 +579,17 @@ public class LibraryRESTFulService {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
+    
+    @GET
+    @Path("/loan/{id}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Loan getLoanById(@PathParam(value="id")int id){
+        Loan loan = null;
+        loan = metier.getLoanById(id);
+        if(loan == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return loan;
+    }
     //End Loan
 }
